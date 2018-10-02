@@ -1,0 +1,11 @@
+<% include partials/_header %>
+
+<ul>
+  <% for(var u in urls){ %>
+  <li> <%= u %> : <%= urls[u] %> </li>
+ <%}%>
+</ul>
+
+<button>Shorten this URL</button>
+
+<% include partials/_footer %>
