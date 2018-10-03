@@ -3,6 +3,8 @@
 <ul>
   <% for(var u in urls){ %>
   <li> <%= u %> : <%= urls[u] %> </li>
+   <a href="/urls/<%= u %> ">EDIT</a>
+ <form method="POST" action="/urls/<%=u%>/delete"><button>Delete</button></form> %>
  <%}%>
 </ul>
 

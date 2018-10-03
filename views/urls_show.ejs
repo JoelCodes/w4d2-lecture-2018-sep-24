@@ -1,7 +1,10 @@
 <% include partials/_header %>
-<ul>
 
-  <li> <%= shortURL %> : <%= url[shortURL] %> </li>
-</ul>
+<h1 style="display:inline">ShortURL:</h1>  <h1 style="display:inline" ><%= shortURL %></h1>
 
+<form action="/urls/<%= shortURL %>/update" method="POST"">
+  <label for="longURL">Enter a New URL:</label>
+  <input id="longURL" type="text" name="longURL" placeholder="http://" style="width: 300px">
+  <input type="submit" value="UPDATE">
+</form>
 <% include partials/_footer %>

@@ -4,3 +4,16 @@
   <title></title>
 </head>
 <body>
+  <p>Welcome</p>
+  <% if(username){ %>
+  <form action="/logout" method="POST">
+    <%= username %>
+   <button type="submit" value="submit">LOGOUT</button>
+  </form>
+  <%} else {%>
+ <form action="/login" method="POST">
+    <input type="text" name="username" placeholder="User Name">
+    <button type="sybmit" value="submit">Submit</button>
+  </form>
+  <%} %>
+
