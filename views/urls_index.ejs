@@ -4,7 +4,7 @@
 <div id="containers" class="container">
 <ul>
   <% for(var u in urls){ %>
-  <li id="urlss"> <%= u %> : <%= urls[u] %>
+  <li> <%= u %> : <%= urls[u] %>
    <a href="/urls/<%= u %> "><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
   <form style="display:inline" method="POST" action="/urls/<%=u%>/delete">
     <button id="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></form>

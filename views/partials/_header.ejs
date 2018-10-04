@@ -2,23 +2,26 @@
 <html>
 <head>
 <title>Tiny App</title>
-<link rel="stylesheet" type="text/css" href="/css/tinyapp.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- <link rel="stylesheet" type="text/css" href="/css/tinyapp.css"> -->
+<!-- < --><!-- link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
 
 <body>
 <h1 id="welcome">WELCOME TO TINYAPP</h1>
   <div id="title" class="container">
-  <% if(username){ %>
+  <% if(user){ %>
   <p>
   <form id="user" style="display:inline" action="/logout" method="POST">
-   HELLO: <%= username %>
-   <button type="submit" class="btn btn-primary">LOGOUT</button>
+   <div id="username">HELLO <p id="username"><%= user.email %></p></div>
+   <br>
+   <button id="user" type="submit" class="btn btn-primary">LOGOUT</button>
   </form>
   </p>
   <%} else {%>
  <form id="user"  action="/login" method="POST">
-    <input type="text" name="username" placeholder="User Name">
-   <button type="submit" class="btn btn-primary">SUBMIT</button>
+    <input id="input" type="text" name="username" placeholder="User Name">
+    <br>
+      <button id="user"type="submit" class="btn btn-primary">SUBMIT</button>
   </form>
   <%} %>
 </div>

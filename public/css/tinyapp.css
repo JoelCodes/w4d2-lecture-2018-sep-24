@@ -4,8 +4,10 @@ background: url(https://images.freecreatives.com/wp-content/uploads/2015/03/6809
 background-size: : cover;
 }
 
+/*Main banner styling*/
 #welcome{
-  font-size: 60px;
+  font-size: 80px;
+  font-family: 'Fredericka the Great', cursive;
   text-align: center;
 }
 
@@ -13,8 +15,7 @@ background-size: : cover;
    text-align: center
 }
 .glyphicon {
-
- font-size: 20px;
+ font-size: 40px;
 }
 
 #button{
@@ -22,48 +23,64 @@ background-size: : cover;
   border: none;
 }
 
+#user{
+color: black;
+margin-top: 10px;
+background-color: transparent;;
+font-family: 'Fredericka the Great', cursive;
+border-color: black;
+}
+
+#input{
+  height:50;
+  width: 200px;
+}
+#username{
+display: inline-block;
+font-size: 40px;
+}
+
 a{
   margin-left: 5px;
 }
+
 li {
-  font-size: 20px;
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 55px;
+  background-color: transparent;;
   text-align: center;
-  height: 35px;
+  height: 55px;
   line-height: 40px;
-  color: #666;
-  border-bottom: 1px solid black;
+  outline: none;
+
 }
 
 ul {
+  background-color: transparent;;
   list-style: none;
   margin: 0;
   padding: 0;
-
-
 }
 
 
+
 span {
-  background: #DEB887;
+  background: transparent;
   height: 30px;
   padding-top: 5px;
-  /*text-align: center;*/
-  color: #fff;
+  color: black;
   width: 0;
   display: inline-block;
   transition: 0.2s linear;
   opacity: 0;
-
 }
-li:hover span{
 
+li:hover span{
   width: 40px;
-  opacity: 1.0;
+  opacity: 0.7;
 }
 
 #containers{
-  width: 500px;
   margin: 100px auto;
-  background: #f7f7f7;
 }
 

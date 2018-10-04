@@ -5,12 +5,10 @@
 
 
 
-<form action="/index">
+<form method="POST" action="/register">
   <label for="longURL">Email</label>
-  <input id="longURL" type="email" name="emailL" placeholder="Email" style="width: 100px">
+  <input id="longURL" type="email" name="email" placeholder="Email" style="width: 100px">
   <label for="longURL">Password</label>
   <input id="longURL" type="password" name="password" placeholder="Password" style="width: 100px" style="border: black">
   <input type="submit" value="Submit">
 </form>
-
-<% include partials/_footer %>
