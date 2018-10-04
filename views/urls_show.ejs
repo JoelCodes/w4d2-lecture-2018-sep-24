@@ -1,5 +1,7 @@
 <% include partials/_header %>
 
+
+<div class="container">
 <h1 style="display:inline">ShortURL:</h1>  <h1 style="display:inline" ><%= shortURL %></h1>
 
 <form action="/urls/<%= shortURL %>/update" method="POST"">
@@ -7,4 +9,5 @@
   <input id="longURL" type="text" name="longURL" placeholder="http://" style="width: 300px">
   <input type="submit" value="UPDATE">
 </form>
+</div>
 <% include partials/_footer %>

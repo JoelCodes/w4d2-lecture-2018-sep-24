@@ -1,13 +1,18 @@
 <% include partials/_header %>
 
+
+<div id="containers" class="container">
 <ul>
   <% for(var u in urls){ %>
-  <li> <%= u %> : <%= urls[u] %> </li>
-   <a href="/urls/<%= u %> ">EDIT</a>
- <form method="POST" action="/urls/<%=u%>/delete"><button>Delete</button></form> %>
+  <li id="urlss"> <%= u %> : <%= urls[u] %>
+   <a href="/urls/<%= u %> "><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
+  <form style="display:inline" method="POST" action="/urls/<%=u%>/delete">
+    <button id="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></form>
  <%}%>
+ </li>
 </ul>
 
-<button>Shorten this URL</button>
-
+</div>
 <% include partials/_footer %>
+
+
