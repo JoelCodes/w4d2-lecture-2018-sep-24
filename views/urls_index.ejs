@@ -1,7 +1,16 @@
 <% include partials/_header %>
 
 
-<div id="containers" class="container">
+<div  id="welcomeBox" class="container">
+  <%if(user){%>
+  <div><h1 id="urlWelcome">Welcome Back:</h1> <h1 id="urlWelcome"><%= user.email %> </h1></div>
+  <%}%>
+  <br>
+  <br>
+  </div>
+  <div id="newURL"><a id="newURL" href="/urls/new"><button id="newURL">Create a new URL</button></a></div>
+  <br>
+  <br>
 <ul>
   <% for(var i =0;i < urls.length; i++){%>
   <li> <%= urls[i].shortURL %> : <%= urls[i].longURL %>
@@ -12,5 +21,7 @@
  </li>
 </ul>
 
-</div>
+
+
+
 <% include partials/_footer %>

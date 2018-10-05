@@ -2,6 +2,13 @@
 
 
 <div class="container">
+  <div  id="welcomeBox" class="container">
+  <%if(user){%>
+  <div><h1 id="urlWelcome">Welcome Back:</h1> <h1 id="urlWelcome"><%= user.email %> </h1></div>
+  <%}%>
+  <br>
+
+  <br>
 <h1 style="display:inline">ShortURL:</h1>  <h1 style="display:inline" ><%= shortURL %></h1>
 
 <form action="/urls/<%= shortURL %>/update" method="POST"">

@@ -11,6 +11,47 @@ background-size: : cover;
   text-align: center;
 }
 
+#urlWelcome{
+  /*margin-bottom: 40px;*/
+  font-size: 50px;
+  font-family: 'Fredericka the Great', cursive;
+  text-align: center;
+}
+
+#newURL{
+  text-align: center;
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 30px;
+  border: none;
+  background-color: transparent;
+}
+
+
+#login{
+   font-family: 'Fredericka the Great', cursive;
+  text-align: center;
+  font-size: 30px;
+}
+
+#regForm{
+  margin-top: 30px;
+  text-align: center;;
+}
+
+#logout{
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 30px;
+  border: none;
+  background-color: transparent;
+
+}
+
+#regButton{
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+}
 #title{
    text-align: center
 }

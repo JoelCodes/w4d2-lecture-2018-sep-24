@@ -1,14 +1,9 @@
 <% include partials/_header %>
 
-
-
-
-
-
-<form method="POST" action="/register">
-  <label for="longURL">Email</label>
-  <input id="longURL" type="email" name="email" placeholder="Email" style="width: 100px">
-  <label for="longURL">Password</label>
-  <input id="longURL" type="password" name="password" placeholder="Password" style="width: 100px" style="border: black">
-  <input type="submit" value="Submit">
-</form>
+<div id="regForm">
+  <form method="POST" action="/register">
+    <input id="longURL" type="email" name="email" placeholder="Email" style="width: 200px">
+    <input id="longURL" type="password" name="password" placeholder="Password" style="width: 200px" style="border: black">
+    <input id="regButton" type="submit" value="Submit">
+  </form>
+</div>
