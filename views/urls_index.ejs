@@ -3,10 +3,10 @@
 
 <div id="containers" class="container">
 <ul>
-  <% for(var u in urls){ %>
-  <li> <%= u %> : <%= urls[u] %>
-   <a href="/urls/<%= u %> "><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
-  <form style="display:inline" method="POST" action="/urls/<%=u%>/delete">
+  <% for(var i =0;i < urls.length; i++){%>
+  <li> <%= urls[i].shortURL %> : <%= urls[i].longURL %>
+   <a href="/urls/<%= urls[i].shortURL %> "><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
+  <form style="display:inline" method="POST" action="/urls/<%=urls[i].shortURL%>/delete">
     <button id="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></form>
  <%}%>
  </li>
