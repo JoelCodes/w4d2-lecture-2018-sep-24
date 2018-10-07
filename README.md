@@ -4,8 +4,11 @@ TINY APP is a full stack web application, built with NODE and EXPRESS.
 
 It allows users to shorten a long URL, and have shortened URLS saved in personal databases!
 
+https://github.com/davidkhayutin/tinyApp/blob/master/docs/Tiny%20App%20home%20page.png?raw=true
 
+https://github.com/davidkhayutin/tinyApp/blob/master/docs/Tiny%20App%20URL%20page.png?raw=true
 
+https://github.com/davidkhayutin/tinyApp/blob/master/docs/Tiny%20App%20URL%20Shorten%20page.png?raw=true
 
 
 
