@@ -114,19 +114,26 @@ app.post("/urls", (req, res) => {
 });
 
 //sends user to individual URL to change the url
+
 app.get("/urls/:id", (req, res) => {
   if(!users[req.session.userID]){
     let templateVars = { shortURL: req.params.id, url: urlDatabase, "user": users[req.session.userID]};
     res.render("login", templateVars);
   }
-  if(urlDatabase[req.params.id].userId.id !== users[req.session.userID].id){
+
+  if(!urlDatabase[req.params.id]){
    let templateVars = { shortURL: req.params.id, urls: urlDatabase, "user": users[req.session.userID], message: "Im sorry you dont not have that URL in your data base" };
-  res.render("errorMessage", templateVars);
-  } else {
-   let templateVars = { shortURL: req.params.id, url: urlDatabase, "user": users[req.session.userID]};
+    res.render("errorMessage", templateVars);
+  }
+
+  if(urlDatabase[req.params.id].userId.id === users[req.session.userID].id ){
+   let templateVars = { shortURL: req.params.id, url: urlDatabase, "user": users[req.session.userID] };
    res.render("urls_show", templateVars);
   }
+
+
 });
+
 
 //link user through the server to the actual URL site
 app.get("/u/:shortURL", (req, res) => {
