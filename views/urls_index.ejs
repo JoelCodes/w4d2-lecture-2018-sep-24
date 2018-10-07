@@ -7,20 +7,20 @@
   <%}%>
   <br>
   <br>
-  </div>
-  <div id="newURL"><a id="newURL" href="/urls/new"><button id="newURL">Create a new URL</button></a></div>
-  <br>
-  <br>
+</div>
+<div id="newURL"><a id="newURL" href="/urls/new"><button id="newURL">Create a new URL</button></a></div>
+<br>
+<br>
 <ul>
   <% for(var i =0;i < urls.length; i++){%>
   <li> <%= urls[i].shortURL %> : <%= urls[i].longURL %>
    <a href="/urls/<%= urls[i].shortURL %> "><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
   <form style="display:inline" method="POST" action="/urls/<%=urls[i].shortURL%>/delete">
     <button id="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></form>
- <%}%>
- </li>
+    <a href="/u/<%=urls[i].shortURL%>"><button id="button"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span></button></a>
+  <%}%>
+  </li>
 </ul>
-
 
 
 

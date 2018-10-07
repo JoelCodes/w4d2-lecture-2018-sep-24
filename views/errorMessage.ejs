@@ -1,0 +1,15 @@
+<% include partials/_header %>
+
+
+<div  id="welcomeBox" class="container">
+  <%if(user){%>
+  <div><h1 id="urlWelcome">Welcome Back:</h1> <h1 id="urlWelcome"><%= user.email %> </h1></div>
+  <%}%>
+  <br>
+  <br>
+</div>
+<div id="error"><%= message %></div>
+<div id="newURL"><a id="newURL" href="/urls/new"><button id="newURL">Create a new URL</button></a>
+<div id="newURL"><a id="newURL" href="/urls"><button id="newURL">Back to your URL's</button></a>
+
+<% include partials/_footer %>

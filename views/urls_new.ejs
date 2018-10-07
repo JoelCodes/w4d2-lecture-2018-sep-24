@@ -1,11 +1,11 @@
 <% include partials/_header %>
+<body id="newURL" style="font-size:20px; padding:50px;">
 
-
-
-  <body id="newURL" style="font-size:20px; padding:50px;">
-    <form action="/urls" method="POST" style="margin:150px;">
-      <label for="longURL">Enter a URL:</label>
-      <input id="longURL" type="text" name="longURL" placeholder="http://" style="width: 300px">
-      <input type="submit" value="Submit">
-    </form>
+<h1 #urlWelcome>Lets Shorten a URL!</h1>
+<form action="/urls" method="POST" style="margin:150px;">
+  <h4 #urlWelcome>For your link to work please include http:// at the start of your URL</h4>
+  <label for="longURL">Enter a URL:</label>
+  <input id="longURL" type="text" name="longURL" placeholder="http://" style="width: 300px">
+  <input type="submit" value="Submit">
+</form>
 <% include partials/_footer %>
