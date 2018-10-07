@@ -129,6 +129,9 @@ app.get("/urls/:id", (req, res) => {
   if(urlDatabase[req.params.id].userId.id === users[req.session.userID].id ){
    let templateVars = { shortURL: req.params.id, url: urlDatabase, "user": users[req.session.userID] };
    res.render("urls_show", templateVars);
+  } else {
+      let templateVars = { shortURL: req.params.id, urls: urlDatabase, "user": users[req.session.userID], message: "Im sorry you dont not have that URL in your data base" };
+      res.render("errorMessage", templateVars);
   }
 
 
