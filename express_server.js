@@ -10,7 +10,6 @@ const client = new Client({
 });
 client.connect((err) => {
 
-
   //required middle-ware and express set -up
   app.use(bodyParser.urlencoded({extended: true}));
   app.set('view engine', 'ejs');
@@ -31,90 +30,21 @@ client.connect((err) => {
     }
     return result;
   }
-  function getUserById(userId, cb){
-    return client.query('SELECT * FROM users WHERE id = $1 LIMIT 1', [userId], (err, result) => {
-      if(err){
-        cb(err);
-      } else {
-        cb(null, result.rows[0]);
-      }
-    });
-  }
-  function isEmailTaken(email, cb){
-    return client.query('SELECT * FROM users WHERE email = $1 LIMIT 1', [email], (err, result) => {
-      if(err){
-        cb(err);
-      } else {
-        cb(null, result.rows.length > 0);
-      }
-    });
-  }
-  function createUser(email, password, cb){
-    const hash = bcrypt.hashSync(password, 10);
-    return client.query('INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *', [email, hash], (err, result) => {
-      if(err){
-        cb(err);
-      } else {
-        cb(null, result.rows[0]);
-      }
-    });
-  }
 
-  function findUserByEmail(email, cb){
-    return client.query('SELECT * FROM users WHERE email = $1 LIMIT 1', [email], (err, result) => {
-      if(err){
-        cb(err);
-      } else {
-        cb(null, result.rows[0]);
-      }
-    });
-  }
+  const {
+    getUserById, 
+    isEmailTaken, 
+    createUser, 
+    getUserByEmail,
+  } = require('./data-helpers/users-pg')(client);
 
-  function getUrlsForUser(userId, cb){
-    client.query('SELECT * FROM urls WHERE "userId" = $1', [userId], (err, result) => {
-      if(err){
-        cb(err);
-      } else {
-        cb(null, result.rows);
-      }
-    });
-  }
-
-  function createUrl(shortUrl, longUrl, userId, cb){
-    client.query(`INSERT INTO urls
-    ("shortUrl", "longUrl", "userId")
-    VALUES ($1, $2, $3) RETURNING *`, [shortUrl, longUrl, userId], (err, result) => {
-      if(err){
-        cb(err);
-      } else {
-        cb(null, result.rows[0]);
-      }
-    });
-  }
-
-  function getUrlByShortUrl(shortUrl, cb){
-    client.query('SELECT * FROM urls WHERE "shortUrl" = $1 LIMIT 1', [shortUrl], (err, result) => {
-      if(err){
-        cb(err);
-      } else {
-        cb(null, result.rows[0]);
-      }
-    });
-  }
-
-  function updateUrl(shortUrl, longUrl, cb){
-    client.query('UPDATE urls SET "longUrl" = $1 WHERE "shortUrl" = $2', [longUrl, shortUrl], (err) => {
-      if(err){
-        cb(err);
-      } else {
-        cb(null);
-      }
-    });
-  }
-
-  function deleteUrl(shortUrl, cb){
-    client.query('DELETE FROM urls WHERE "shortUrl" = $1', [shortUrl], cb);
-  }
+  const {
+    getUrlsForUser,
+    getUrlByShortUrl,
+    createUrl,
+    deleteUrl,
+    updateUrl,
+  } = require('./data-helpers/urls-pg')(client);
 
   app.use((req, res, next) => {
     getUserById(req.session.userId, (err, user) => {
@@ -236,7 +166,7 @@ client.connect((err) => {
   });
   //allows an existing user to login
   app.post('/login', (req,res) =>{
-    findUserByEmail(req.body.email, (err, user) => {
+    getUserByEmail(req.body.email, (err, user) => {
       if(bcrypt.compareSync(req.body.password, user.password)){
         req.session.userId = user.id;
         res.redirect('/urls');
@@ -250,14 +180,6 @@ client.connect((err) => {
     req.session = null;
     res.redirect('/');
   });
-
-
-
-
-
-
-
-
 
   app.listen(PORT, () => {
     console.log(`Example app listening on port ${PORT}!`);
