@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 function makeUserDataHelpers(client){
   function getUserById(userId, cb){
     return client.query('SELECT * FROM users WHERE id = $1 LIMIT 1', [userId], (err, result) => {
