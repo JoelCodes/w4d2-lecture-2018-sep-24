@@ -9,10 +9,10 @@
   <br>
   <h3 id="urlWelcome">Want to update the following url</h3>
   <br>
-<div id="newURL"><h1 id="newURL" style="display:inline">ShortURL:</h1>  <h1 id="newURL" style="display:inline" ><%= shortURL %></h1></div>
+<div id="newURL"><h1 id="newURL" style="display:inline">ShortURL:</h1>  <h1 id="newURL" style="display:inline" ><%= url.shortUrl %></h1></div>
 <br>
 <br>
-<form  id="newURL" action="/urls/<%= shortURL %>/update" method="POST"">
+<form  id="newURL" action="/urls/<%= url.shortUrl %>/update" method="POST"">
   <label for="longURL">Enter a New URL:</label>
   <input id="longURL" type="text" name="longURL" placeholder="http://" style="width: 300px">
   <input type="submit" value="UPDATE">

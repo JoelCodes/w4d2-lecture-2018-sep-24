@@ -13,11 +13,11 @@
 <br>
 <ul>
   <% for(var i =0;i < urls.length; i++){%>
-  <li> <%= urls[i].shortURL %> : <%= urls[i].longURL %>
-   <a href="/urls/<%= urls[i].shortURL %> "><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
-  <form style="display:inline" method="POST" action="/urls/<%=urls[i].shortURL%>/delete">
+  <li> <%= urls[i].shortUrl %> : <%= urls[i].longUrl %>
+   <a href="/urls/<%= urls[i].shortUrl %> "><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
+  <form style="display:inline" method="POST" action="/urls/<%=urls[i].shortUrl%>/delete">
     <button id="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></form>
-    <a href="/u/<%=urls[i].shortURL%>"><button id="button"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span></button></a>
+    <a href="/u/<%=urls[i].shortUrl%>"><button id="button"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span></button></a>
   <%}%>
   </li>
 </ul>
