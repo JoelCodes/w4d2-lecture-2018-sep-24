@@ -13,7 +13,7 @@
 <br>
 <ul>
   <% for(var i =0;i < urls.length; i++){%>
-  <li> <%= urls[i].shortUrl %> : <%= urls[i].longUrl %>
+  <li> <%= urls[i].short_url %> : <%= urls[i].long_url %>
    <a href="/urls/<%= urls[i].shortUrl %> "><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
   <form style="display:inline" method="POST" action="/urls/<%=urls[i].shortUrl%>/delete">
     <button id="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></form>

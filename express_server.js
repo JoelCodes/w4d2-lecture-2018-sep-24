@@ -8,6 +8,10 @@ const {Client} = require('pg');
 const client = new Client({
   database: 'tiny_app_pg'
 });
+
+const knexConfig = require('./knexfile').development;
+const knex = require('knex')(knexConfig);
+
 client.connect((err) => {
 
   //required middle-ware and express set -up
@@ -31,20 +35,33 @@ client.connect((err) => {
     return result;
   }
 
+  // const {
+  //   getUserById, 
+  //   isEmailTaken, 
+  //   createUser, 
+  //   getUserByEmail,
+  // } = require('./data-helpers/users-pg')(client);
   const {
     getUserById, 
     isEmailTaken, 
     createUser, 
     getUserByEmail,
-  } = require('./data-helpers/users-pg')(client);
+  } = require('./data-helpers/users-knex')(knex);
 
+  // const {
+  //   getUrlsForUser,
+  //   getUrlByShortUrl,
+  //   createUrl,
+  //   deleteUrl,
+  //   updateUrl,
+  // } = require('./data-helpers/urls-pg')(client);
   const {
     getUrlsForUser,
     getUrlByShortUrl,
     createUrl,
     deleteUrl,
     updateUrl,
-  } = require('./data-helpers/urls-pg')(client);
+  } = require('./data-helpers/urls-knex')(knex);
 
   app.use((req, res, next) => {
     getUserById(req.session.userId, (err, user) => {
