@@ -1,11 +1,10 @@
 const bcrypt = require('bcrypt');
 function makeUserDataHelpers(knex){
 
-  function getUserById(userId, cb){
-    knex('users')
+  function getUserById(userId){
+    return knex('users')
       .first('*')
-      .where({id: userId})
-      .asCallback(cb);
+      .where({id: userId || 0});
     // client.query('SELECT * FROM users WHERE id = $1 LIMIT 1', [userId], (err, result) => {
     //   if(err){
     //     cb(err);
@@ -14,52 +13,39 @@ function makeUserDataHelpers(knex){
     //   }
     // });
   }
-  function isEmailTaken(email, cb){
-    getUserByEmail(email, (err, user) => {
-      if(err){
-        cb(err);
-      } else {
-        cb(null, user !== undefined);
-      }
-    });
-    // return client.query('SELECT * FROM users WHERE email = $1 LIMIT 1', [email], (err, result) => {
-    //   if(err){
-    //     cb(err);
-    //   } else {
-    //     cb(null, result.rows.length > 0);
-    //   }
-    // });
+  function isEmailTaken(email){
+    const userPromise = getUserByEmail(email);
+
+    const userExistsPromise = userPromise
+      .then(user => {
+        return user !== undefined;
+      });
+
+    return userExistsPromise;
   }
-  function createUser(email, password, cb){
+  function createUser(email, password){
 
     const hash = bcrypt.hashSync(password, 10);
-    knex('users')
+
+    const createdUsersPromise = knex('users')
       .returning('*')
       .insert([{
         email:email,
         password: hash
-      }])
-      .asCallback((err, users) => {
-        if(err){
-          cb(err);
-        } else {
-          cb(null, users[0]);
-        }
+      }]);
+
+    const firstUserPromise = createdUsersPromise
+      .then((users) => {
+        return users[0];
       });
-    // return client.query('INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *', [email, hash], (err, result) => {
-    //   if(err){
-    //     cb(err);
-    //   } else {
-    //     cb(null, result.rows[0]);
-    //   }
-    // });
+
+    return firstUserPromise;
   }
 
-  function getUserByEmail(email, cb){
-    knex('users')
+  function getUserByEmail(email){
+    return knex('users')
       .first('*')
-      .where({email: email})
-      .asCallback(cb);
+      .where({email: email});
     // return client.query('SELECT * FROM users WHERE email = $1 LIMIT 1', [email], (err, result) => {
     //   if(err){
     //     cb(err);

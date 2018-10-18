@@ -64,7 +64,11 @@ client.connect((err) => {
   } = require('./data-helpers/urls-knex')(knex);
 
   app.use((req, res, next) => {
-    getUserById(req.session.userId, (err, user) => {
+    // getUserById(req.session.userId, (err, user) => {
+    //   res.locals.user = user;
+    //   next();
+    // });
+    getUserById(req.session.userId).then((user) => {
       res.locals.user = user;
       next();
     });
@@ -164,15 +168,21 @@ client.connect((err) => {
       res.status(400).send('Email and Password Required');
       return;
     }
-    isEmailTaken(userEmail, (err, isTaken) => {
+    const emailTakenPromise = isEmailTaken(userEmail);
+
+    emailTakenPromise.then((isTaken) => {
       if(isTaken){
         res.status(400).send('That Email is Taken');
         return;
       } else {
-        createUser(userEmail, userPassword, (err, newUser) => {
-          req.session.userId = newUser.id;
-          res.redirect('/urls');
-        });
+
+        const createdUserPromise = createUser(userEmail, userPassword);
+
+        createdUserPromise
+          .then((newUser) => {
+            req.session.userId = newUser.id;
+            res.redirect('/urls');
+          });
       }
     });
   });
@@ -183,14 +193,15 @@ client.connect((err) => {
   });
   //allows an existing user to login
   app.post('/login', (req,res) =>{
-    getUserByEmail(req.body.email, (err, user) => {
-      if(bcrypt.compareSync(req.body.password, user.password)){
-        req.session.userId = user.id;
-        res.redirect('/urls');
-      } else {
-        res.status(401).send('Email and password combo not found');
-      }
-    });
+    getUserByEmail(req.body.email)
+      .then(( user) => {
+        if(bcrypt.compareSync(req.body.password, user.password)){
+          req.session.userId = user.id;
+          res.redirect('/urls');
+        } else {
+          res.status(401).send('Email and password combo not found');
+        }
+      });
   });
   //allows user to logout of application
   app.post('/logout', (req, res) => {
